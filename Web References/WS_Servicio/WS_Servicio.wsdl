@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="Sistemas Integral" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="Sistemas Integral" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="Sistemas Integral">
+      <s:element name="Procesar_Servicio">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="pId_Servicio" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pCantidad_Errores_Continuos" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="pUltimo_Error" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Procesar_ServicioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Procesar_ServicioResult" type="tns:RS_Servicio" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RS_Servicio">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Respuesta">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Servicio" type="tns:OServicio" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Respuesta">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Resultado" type="tns:Resultado" />
+          <s:element minOccurs="0" maxOccurs="1" name="Mensaje" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="Resultado">
+        <s:restriction base="s:string">
+          <s:enumeration value="Error" />
+          <s:enumeration value="Ok" />
+          <s:enumeration value="Advertencia" />
+          <s:enumeration value="Confirmacion" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="OServicio">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id_Servicio" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Fecha_Hora_Ultimo_Control" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Observaciones_Ultimo_Control" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id_Notificacion" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre_Notificacion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id_Notificacion_Error" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Aplica_Lunes" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Aplica_Martes" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Aplica_Miercoles" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Aplica_Jueves" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Aplica_Viernes" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Aplica_Sabado" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Aplica_Domingo" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Aplica_Feriados" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Aplica_Periodo_Vacacional" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id_Servicio_Tipo" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre_Servicio_Tipo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id_Servicio_Estado" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre_Servicio_Estado" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Registra_Procesamiento" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Obtener_Servicio_Constante">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="pId_Servicio" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Obtener_Servicio_ConstanteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Obtener_Servicio_ConstanteResult" type="tns:RS_Servicio_Constante" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RS_Servicio_Constante">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Respuesta">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Servicio" type="tns:OServicio_Constante" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="OServicio_Constante">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Control_Cada_X_Segundos" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Hora_Inicio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Hora_Fin" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RS_Servicio" nillable="true" type="tns:RS_Servicio" />
+      <s:element name="RS_Servicio_Constante" nillable="true" type="tns:RS_Servicio_Constante" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="Procesar_ServicioSoapIn">
+    <wsdl:part name="parameters" element="tns:Procesar_Servicio" />
+  </wsdl:message>
+  <wsdl:message name="Procesar_ServicioSoapOut">
+    <wsdl:part name="parameters" element="tns:Procesar_ServicioResponse" />
+  </wsdl:message>
+  <wsdl:message name="Obtener_Servicio_ConstanteSoapIn">
+    <wsdl:part name="parameters" element="tns:Obtener_Servicio_Constante" />
+  </wsdl:message>
+  <wsdl:message name="Obtener_Servicio_ConstanteSoapOut">
+    <wsdl:part name="parameters" element="tns:Obtener_Servicio_ConstanteResponse" />
+  </wsdl:message>
+  <wsdl:message name="Procesar_ServicioHttpGetIn">
+    <wsdl:part name="pId_Servicio" type="s:string" />
+    <wsdl:part name="pCantidad_Errores_Continuos" type="s:string" />
+    <wsdl:part name="pUltimo_Error" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Procesar_ServicioHttpGetOut">
+    <wsdl:part name="Body" element="tns:RS_Servicio" />
+  </wsdl:message>
+  <wsdl:message name="Obtener_Servicio_ConstanteHttpGetIn">
+    <wsdl:part name="pId_Servicio" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Obtener_Servicio_ConstanteHttpGetOut">
+    <wsdl:part name="Body" element="tns:RS_Servicio_Constante" />
+  </wsdl:message>
+  <wsdl:portType name="WS_ServicioSoap">
+    <wsdl:operation name="Procesar_Servicio">
+      <wsdl:input message="tns:Procesar_ServicioSoapIn" />
+      <wsdl:output message="tns:Procesar_ServicioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Obtener_Servicio_Constante">
+      <wsdl:input message="tns:Obtener_Servicio_ConstanteSoapIn" />
+      <wsdl:output message="tns:Obtener_Servicio_ConstanteSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="WS_ServicioHttpGet">
+    <wsdl:operation name="Procesar_Servicio">
+      <wsdl:input message="tns:Procesar_ServicioHttpGetIn" />
+      <wsdl:output message="tns:Procesar_ServicioHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Obtener_Servicio_Constante">
+      <wsdl:input message="tns:Obtener_Servicio_ConstanteHttpGetIn" />
+      <wsdl:output message="tns:Obtener_Servicio_ConstanteHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WS_ServicioSoap" type="tns:WS_ServicioSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Procesar_Servicio">
+      <soap:operation soapAction="Sistemas Integral/Procesar_Servicio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Obtener_Servicio_Constante">
+      <soap:operation soapAction="Sistemas Integral/Obtener_Servicio_Constante" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WS_ServicioSoap12" type="tns:WS_ServicioSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Procesar_Servicio">
+      <soap12:operation soapAction="Sistemas Integral/Procesar_Servicio" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Obtener_Servicio_Constante">
+      <soap12:operation soapAction="Sistemas Integral/Obtener_Servicio_Constante" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WS_ServicioHttpGet" type="tns:WS_ServicioHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="Procesar_Servicio">
+      <http:operation location="/Procesar_Servicio" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Obtener_Servicio_Constante">
+      <http:operation location="/Obtener_Servicio_Constante" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WS_Servicio">
+    <wsdl:port name="WS_ServicioSoap" binding="tns:WS_ServicioSoap">
+      <soap:address location="http://localhost:2276/WS_Servicio.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WS_ServicioSoap12" binding="tns:WS_ServicioSoap12">
+      <soap12:address location="http://localhost:2276/WS_Servicio.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WS_ServicioHttpGet" binding="tns:WS_ServicioHttpGet">
+      <http:address location="http://localhost:2276/WS_Servicio.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
